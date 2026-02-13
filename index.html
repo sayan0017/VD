@@ -40,7 +40,7 @@
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<main class="w-full max-w-md text-center">
+<main class="w-full max-w-md text-center relative">
 
 <img id="imageDisplay"
      src="images/image1.gif"
@@ -48,7 +48,7 @@
 
 <h1 id="valentineQuestion"
     class="text-3xl sm:text-4xl font-bold italic text-[#bd1e59] mt-6">
-  Chanu has something to ask you 💌
+  Sayan has something to ask you 💌
 </h1>
 
 <p id="valentineLine"
@@ -85,7 +85,7 @@ const valentineLine = document.getElementById('valentineLine');
 const responseButtons = document.getElementById('responseButtons');
 const bgMusic = document.getElementById('bgMusic');
 
-// 🎵 Play music after first click
+// 🎵 Play music after first interaction
 document.addEventListener("click", () => {
   bgMusic.play().catch(() => {});
 }, { once: true });
@@ -99,7 +99,7 @@ setInterval(() => {
   heart.style.fontSize = (Math.random() * 20 + 15) + "px";
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 6000);
-}, 600);
+}, 700);
 
 // --------------------
 // NO BUTTON LOGIC
@@ -127,21 +127,21 @@ const noMessages = [
 let noClickCount = 0;
 let yesScale = 1;
 
-// Move button but keep it inside screen
-function moveNoButton() {
-  const maxX = window.innerWidth - noButton.offsetWidth - 20;
-  const maxY = window.innerHeight - noButton.offsetHeight - 20;
+// Softer playful movement
+function moveNoButtonSoft() {
 
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
+  // Move only 50% of the time
+  if (Math.random() > 0.5) return;
 
-  noButton.style.position = "absolute";
-  noButton.style.left = randomX + "px";
-  noButton.style.top = randomY + "px";
+  const range = 60;
+
+  const x = (Math.random() - 0.5) * range;
+  const y = (Math.random() - 0.5) * range;
+
+  noButton.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-noButton.addEventListener('mouseover', moveNoButton);
-noButton.addEventListener('touchstart', moveNoButton);
+noButton.addEventListener('mouseover', moveNoButtonSoft);
 
 // On click → change GIF + grow Yes
 noButton.addEventListener('click', () => {
@@ -155,7 +155,7 @@ noButton.addEventListener('click', () => {
       noButton.textContent = noMessages[noClickCount];
     }
 
-    yesScale += 0.25;
+    yesScale += 0.2;
     yesButton.style.transform = `scale(${yesScale})`;
   }
 });
