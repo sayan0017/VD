@@ -1,157 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine 💘</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💘</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <style>
-    .gradient-background {
-      background: linear-gradient(180deg, #ffd0e5 0%, #ffe8f2 36%, #ffffff 100%);
-      min-height: 100vh;
-      overflow: hidden;
-    }
+<style>
+  .gradient-background {
+    background: linear-gradient(180deg, #ffd0e5 0%, #ffe8f2 36%, #ffffff 100%);
+    min-height: 100vh;
+    overflow: hidden;
+  }
 
-    .bounce {
-      animation: bounce 2s ease infinite;
-    }
+  .bounce {
+    animation: bounce 2s ease infinite;
+  }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
+  @keyframes bounce {
+    0%,20%,50%,80%,100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+  }
 
-    .heart {
-      position: fixed;
-      color: #ff4d88;
-      animation: floatUp 6s linear infinite;
-      font-size: 20px;
-      pointer-events: none;
-    }
+  .heart {
+    position: fixed;
+    color: #ff4d88;
+    animation: floatUp 6s linear infinite;
+    pointer-events: none;
+  }
 
-    @keyframes floatUp {
-      0% { transform: translateY(100vh); opacity: 1; }
-      100% { transform: translateY(-10vh); opacity: 0; }
-    }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
 
-    .glow {
-      box-shadow: 0 0 15px #ff69b4, 0 0 30px #ff1493;
-    }
-  </style>
+  .glow {
+    box-shadow: 0 0 15px #ff69b4, 0 0 30px #ff1493;
+  }
+</style>
 </head>
 
 <body class="gradient-background">
 
-  <!-- 🎵 Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-  <main class="flex items-center justify-center h-screen">
-    <section class="flex flex-col items-center p-4 text-center">
+<main class="flex items-center justify-center h-screen">
+<section class="flex flex-col items-center p-4 text-center">
 
-      <img
-        id="imageDisplay"
-        src="images/image1.gif"
-        alt="Cute kitten"
-        class="rounded-md h-[300px] object-cover"
-      />
+<img id="imageDisplay"
+     src="images/image1.gif"
+     class="rounded-md h-[300px] object-cover" />
 
-      <h1 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4">
-        Sayan has something to ask you 💌
-      </h1>
+<h1 id="valentineQuestion"
+    class="text-4xl font-bold italic text-[#bd1e59] my-4">
+  Sayan has something to ask you 💌
+</h1>
 
-      <p class="text-2xl text-pink-600 font-semibold animate-pulse">
-        Will you be my Valentine, 
-        <span class="text-red-500">Chonuuuuuu? 🥺💖</span>
-      </p>
+<p id="valentineLine"
+   class="text-2xl text-pink-600 font-semibold animate-pulse">
+  Will you be my Valentine,
+  <span class="text-red-500">Chonuuuuuu? 🥺💖</span>
+</p>
 
-      <div id="responseButtons" class="flex gap-4 pt-6 items-center">
-        <button
-          id="yesButton"
-          class="bounce glow rounded-md text-xl font-medium px-6 py-3 bg-green-500 text-white hover:bg-green-400 transition-all"
-        >
-          Yes 💖
-        </button>
+<div id="responseButtons" class="flex gap-4 pt-6 items-center">
 
-        <button
-          id="noButton"
-          class="rounded-md text-xl font-medium px-6 py-3 bg-red-500 text-white hover:bg-red-700 transition-all"
-        >
-          No 😢
-        </button>
-      </div>
+<button id="yesButton"
+        class="bounce glow rounded-md text-xl font-medium px-6 py-3 bg-green-500 text-white hover:bg-green-400 transition-all">
+  Yes 💖
+</button>
 
-    </section>
-  </main>
+<button id="noButton"
+        class="rounded-md text-xl font-medium px-6 py-3 bg-red-500 text-white hover:bg-red-700 transition-all">
+  No 😢
+</button>
+
+</div>
+
+</section>
+</main>
 
 <script>
 (() => {
 
-  const yesButton = document.getElementById('yesButton');
-  const noButton = document.getElementById('noButton');
-  const imageDisplay = document.getElementById('imageDisplay');
-  const valentineQuestion = document.getElementById('valentineQuestion');
-  const responseButtons = document.getElementById('responseButtons');
-  const bgMusic = document.getElementById("bgMusic");
+const yesButton = document.getElementById('yesButton');
+const noButton = document.getElementById('noButton');
+const imageDisplay = document.getElementById('imageDisplay');
+const valentineQuestion = document.getElementById('valentineQuestion');
+const valentineLine = document.getElementById('valentineLine');
+const responseButtons = document.getElementById('responseButtons');
+const bgMusic = document.getElementById('bgMusic');
 
-  // 🎵 Play music after first interaction
-  document.addEventListener("click", () => {
-    bgMusic.play().catch(() => {});
-  }, { once: true });
+// 🎵 Play music after first click (browser policy)
+document.addEventListener("click", () => {
+  bgMusic.play().catch(() => {});
+}, { once: true });
 
-  // Floating hearts
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    document.body.appendChild(heart);
+// 💖 Floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
 
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
-  }, 500);
+// --------------------
+// NO BUTTON LOGIC
+// --------------------
 
-  let sizeIncrease = 1;
+const images = [
+  "images/image1.gif",
+  "images/image2.gif",
+  "images/image3.gif",
+  "images/image4.gif",
+  "images/image5.gif",
+  "images/image6.gif",
+  "images/image7.gif"
+];
 
-  // 😈 No button runs away
-  noButton.addEventListener('mouseover', () => {
-    const x = Math.random() * 200 - 100;
-    const y = Math.random() * 200 - 100;
-    noButton.style.transform = `translate(${x}px, ${y}px)`;
+const noMessages = [
+  "No 😢",
+  "Are you sure? 🥺",
+  "Pookie please 💔",
+  "Don't do this 😭",
+  "You're breaking my heart 💔",
+  "Last chance 😔"
+];
+
+let noClickCount = 0;
+let yesScale = 1;
+
+// 😈 Move on hover
+noButton.addEventListener('mouseover', () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  noButton.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// 😭 Change GIF + grow YES on click
+noButton.addEventListener('click', () => {
+
+  if (noClickCount < images.length - 1) {
+    noClickCount++;
+
+    imageDisplay.src = images[noClickCount];
+
+    if (noClickCount < noMessages.length) {
+      noButton.textContent = noMessages[noClickCount];
+    }
+
+    yesScale += 0.3;
+    yesButton.style.transform = `scale(${yesScale})`;
+  }
+});
+
+// --------------------
+// YES BUTTON LOGIC
+// --------------------
+
+yesButton.addEventListener('click', () => {
+
+  imageDisplay.src = "images/image7.gif";
+
+  valentineQuestion.innerHTML = `
+    YAYYYY CHONUUUUU 🥰💖 <br><br>
+    You just made Chanuuu the happiest boy alive ✨ <br>
+    I promise unlimited hugs, food dates, and annoying you forever 😌💞
+  `;
+
+  // Hide Valentine line
+  valentineLine.style.display = "none";
+
+  // Hide buttons
+  responseButtons.style.display = "none";
+
+  // 🎉 Confetti
+  const heartShape = confetti.shapeFromPath({
+    path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
   });
 
-  // 😌 If Yes is clicked
-  yesButton.addEventListener('click', () => {
-
-    imageDisplay.src = "images/image7.gif";
-
-    valentineQuestion.innerHTML = `
-      YAYYY!! 🥰💖 <br><br>
-      You just made Chanuuu the happiest boy alive ✨ <br>
-      I promise unlimited hugs, food dates, and annoying you forever 😌💞
-    `;
-
-    responseButtons.style.display = 'none';
-
-    // 🎉 Confetti hearts
-    const heartShape = confetti.shapeFromPath({
-      path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
-    });
-
-    confetti({
-      particleCount: 100,
-      spread: 360,
-      shapes: [heartShape],
-      colors: ['#ff69b4', '#ff1493', '#ff6b81']
-    });
+  confetti({
+    particleCount: 120,
+    spread: 360,
+    shapes: [heartShape],
+    colors: ['#ff69b4', '#ff1493', '#ff6b81']
   });
+
+});
 
 })();
 </script>
